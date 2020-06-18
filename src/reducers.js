@@ -3,9 +3,35 @@ import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REQUEST_POSTS,
-  RECEIVE_POSTS
+  RECEIVE_POSTS,
+  SUMMONER,
+  MATCHLIST,
+  TIMELINE
 } from './actions'
-
+function timeline(state = {}, action){
+  switch (action.type) {
+    case TIMELINE:
+      return action.data
+    default:
+      return state
+  }
+}
+function matchList(state = {}, action){
+  switch (action.type) {
+    case MATCHLIST:
+      return action.data
+    default:
+      return state
+  }
+}
+function summonerInfo(state = {}, action){
+  switch (action.type) {
+    case SUMMONER:
+      return action.data
+    default:
+      return state
+  }
+}
 function selectedSubreddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_SUBREDDIT:
@@ -57,10 +83,12 @@ function postsBySubreddit(state = {}, action) {
       return state
   }
 }
-
 const rootReducer = combineReducers({
   postsBySubreddit,
-  selectedSubreddit
+  selectedSubreddit,
+  summonerInfo,
+  matchList,
+  timeline
 })
 
 export default rootReducer

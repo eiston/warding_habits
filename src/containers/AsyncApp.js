@@ -6,10 +6,14 @@ import {
   fetchPostsIfNeeded,
   invalidateSubreddit
 } from '../actions'
-import Picker from '../components/Picker'
-import Posts from '../components/Posts'
+// import Picker from '../components/Picker'
+// import Posts from '../components/Posts'
 import SearchInput from '../components/SearchInput'
+import ProfileCard from '../components/ProfileCard'
+import RoleChart from '../components/RoleChart'
+import HeatMapChart from '../components/HeatMapChart'
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -44,14 +48,24 @@ class AsyncApp extends Component {
   }
 
   render() {
-    const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
+    // const { selectedSubreddit, posts, isFetching, lastUpdated } = this.props
     return (
       <div>
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
             <SearchInput/>
+            <Grid container spacing={2}>
+              <Grid item xs={3}>
+                <ProfileCard/>
+                <RoleChart/>
+              </Grid>
+              <Grid item xs={9}>
+                <HeatMapChart/>
+              </Grid>
+            </Grid>
+            
         </Container>
         
-        <Picker
+        {/* <Picker
           value={selectedSubreddit}
           onChange={this.handleChange}
           options={['reactjs', 'frontend']}
@@ -72,7 +86,7 @@ class AsyncApp extends Component {
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <Posts posts={posts} />
           </div>
-        )}
+        )} */}
       </div>
     )
   }
